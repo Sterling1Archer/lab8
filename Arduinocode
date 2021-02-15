@@ -1,0 +1,40 @@
+#include<Servo.h>
+Servo RCservo_BOTTOM, RCservo_TOP;
+int POT_BOTTOM=A1, POT_TOP=A0;
+int val_BOTTOM, val_BOTTOM_temp, val_TOP, val_TOP_temp;
+int pos_BOTTOM, pos_TOP;
+
+void setup() {
+RCservo_BOTTOM.attach(9);
+RCservo_TOP.attach(10);
+}
+
+void loop() {
+Serial.begin(9600);
+
+for (int i=0;i<=5;i++){
+  val_BOTTOM_temp = analogRead(POT_BOTTOM);
+  val_BOTTOM = val_BOTTOM + val_BOTTOM_temp;
+  val_BOTTOM = val_BOTTOM / 5;
+  val_BOTTOM = ceil(val_BOTTOM);
+  val_TOP_temp = analogRead(POT_TOP);
+  val_TOP = val_TOP + val_TOP_temp;
+  val_TOP = val_TOP / 5;
+  val_TOP = ceil(val_TOP);
+  delay(10);
+}
+Serial.print("POT_BOTTOM: ");
+Serial.println(val_BOTTOM);
+pos_BOTTOM= val_BOTTOM*0.51;
+RCservo_BOTTOM.write(pos_BOTTOM);
+Serial.print("BOTTOM: ");
+Serial.println(pos_BOTTOM);
+
+Serial.print("POT_TOP: ");
+Serial.println(val_TOP);
+pos_TOP=val_TOP*0.51;
+RCservo_TOP.write(pos_TOP);
+Serial.print("TOP: ");
+Serial.println(pos_TOP);
+delay(10);
+}
