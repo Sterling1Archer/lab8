@@ -19,10 +19,10 @@ def secondfunc():
 
 def slider_top_changed(slider_value):
     print("Slider value: ",slider_value)
-    angle = (int(slider_value)*0.45)+45
+    angle = (int(slider_value)*0.9)+90
     angle = math.ceil(angle)
     print("Angle: ",angle)
-    #time.sleep(1)
+    time.sleep(1)
     s_top.angle = angle
     time.sleep(0.05)
     s_top.angle = None
@@ -30,19 +30,18 @@ def slider_top_changed(slider_value):
     
 def slider_bottom_changed(slider_value):
     print("Slider value: ",slider_value)
-    angle = (int(slider_value)*0.45)+45
+    angle = (int(slider_value)*0.9)+90
     angle = math.ceil(angle)
     print("Angle: ",angle)
-    #time.sleep(1)
     s_base.angle = angle
     time.sleep(0.05)
     s_base.angle = None
     print("Angle2: ",s_base.angle)
 
 if __name__ == '__main__':
-    s_base = AngularServo(26, min_angle=0, max_angle=90)
+    s_base = AngularServo(26, min_angle=0, max_angle=180)
     s_base.angle = None
-    s_top = AngularServo(21, min_angle=0, max_angle=90)
+    s_top = AngularServo(21, min_angle=0, max_angle=180)
     s_top.angle = None
     app = App("RC Servo Controller")
     app2 = secondfunc()
